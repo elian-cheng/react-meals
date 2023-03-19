@@ -4,8 +4,8 @@ interface ICartItem {
   price: number;
   name: string;
   amount: number;
-  onRemove: Function;
-  onAdd: Function;
+  onRemove: () => void;
+  onAdd: () => void;
 }
 
 const CartItem = (props: ICartItem) => {
@@ -21,8 +21,8 @@ const CartItem = (props: ICartItem) => {
         </div>
       </div>
       <div className={classes.actions}>
-        <button onClick={() => props.onRemove}>−</button>
-        <button onClick={() => props.onAdd}>+</button>
+        <button onClick={props.onRemove}>−</button>
+        <button onClick={props.onAdd}>+</button>
       </div>
     </li>
   );

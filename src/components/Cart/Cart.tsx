@@ -10,8 +10,12 @@ const Cart = (props: { onClose: MouseEventHandler<HTMLElement> }) => {
   const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`;
   const hasItems = cartCtx.items.length > 0;
 
-  const cartItemAddHandler = (item: IProduct) => {};
-  const cartItemRemoveHandler = (id: string) => {};
+  const cartItemAddHandler = (item: IProduct) => {
+    cartCtx.addItem({ ...item, amount: 1 });
+  };
+  const cartItemRemoveHandler = (id: string) => {
+    cartCtx.removeItem(id);
+  };
 
   const cartItems = (
     <ul className={classes["cart-items"]}>
