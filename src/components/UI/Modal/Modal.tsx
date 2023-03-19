@@ -1,9 +1,14 @@
-import { Fragment, ReactNode } from "react";
+import { Fragment, MouseEventHandler, ReactNode } from "react";
 import ReactDOM from "react-dom";
 import classes from "./Modal.module.css";
 
-export const Backdrop = () => {
-  return <div className={classes.backdrop} />;
+export const Backdrop = (props: { onClose: MouseEventHandler<HTMLElement> }) => {
+  return (
+    <div
+      className={classes.backdrop}
+      onClick={props.onClose}
+    />
+  );
 };
 
 export const ModalOverlay = (props: { children: ReactNode }) => {
@@ -16,10 +21,10 @@ export const ModalOverlay = (props: { children: ReactNode }) => {
 
 const portalElement = document.getElementById("overlays") as HTMLElement;
 
-const Modal = (props: { children: ReactNode }) => {
+const Modal = (props: { children: ReactNode; onClose: MouseEventHandler<HTMLElement> }) => {
   return (
     <Fragment>
-      {ReactDOM.createPortal(<Backdrop />, portalElement)}
+      {ReactDOM.createPortal(<Backdrop onClose={props.onClose} />, portalElement)}
       {ReactDOM.createPortal(<ModalOverlay>{props.children}</ModalOverlay>, portalElement)}
     </Fragment>
   );

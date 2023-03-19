@@ -1,4 +1,4 @@
-import { FC, InputHTMLAttributes } from "react";
+import React, { InputHTMLAttributes } from "react";
 import classes from "./Input.module.css";
 
 export interface IInput extends InputHTMLAttributes<HTMLInputElement> {
@@ -11,12 +11,15 @@ interface IInputProps {
   input: IInput;
 }
 
-const Input: FC<IInputProps> = ({ label, input }) => {
+const Input = React.forwardRef<HTMLInputElement, IInputProps>((props, ref) => {
   return (
     <div className={classes.input}>
-      <label htmlFor={input.id}>{label}</label>
-      <input {...input} />
+      <label htmlFor={props.input.id}>{props.label}</label>
+      <input
+        ref={ref}
+        {...props.input}
+      />
     </div>
   );
-};
+});
 export default Input;

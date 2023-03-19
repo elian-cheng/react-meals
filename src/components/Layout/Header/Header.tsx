@@ -1,14 +1,14 @@
-import { Fragment } from "react";
+import { Fragment, MouseEventHandler } from "react";
 import classes from "./Header.module.css";
 import mealsImage from "../../../assets/meals.jpg";
 import HeaderCartButton from "./HeaderCartButton/HeaderCartButton";
 
-const Header = () => {
+const Header = (props: { onShowCart: MouseEventHandler<HTMLButtonElement> }) => {
   return (
     <Fragment>
       <header className={classes.header}>
         <h1>React Meals</h1>
-        <HeaderCartButton />
+        <HeaderCartButton onClick={props.onShowCart} />
       </header>
       <div className={classes["main-image"]}>
         <img
