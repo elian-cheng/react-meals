@@ -20,3 +20,4 @@ const Header = (props: { onShowCart: MouseEventHandler<HTMLButtonElement> }) => 
   );
 };
 export default Header;
+
